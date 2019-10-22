@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView speak;
     Random random = new Random();
     int secert = random.nextInt(10)+1;
-    int secert2 = random.nextInt(10)+1;
+
     int num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +33,15 @@ public class MainActivity extends AppCompatActivity {
         number = findViewById(R.id.number);
         speak = findViewById(R.id.speak);
         Log.d("Mainactive","secret :"+secert);
-        Log.d("Mainactive","secret2 :"+secert2);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int secert2 = random.nextInt(10)+1;
                 secert = secert2;
+                Log.d("Mainactive","secret2 :"+secert2);
             }
         });
 
