@@ -12,12 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    TextView number;
+    EditText number;
     TextView speak;
     Random random = new Random();
     int secert = random.nextInt(10)+1;
