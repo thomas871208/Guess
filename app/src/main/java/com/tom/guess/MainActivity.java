@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     TextView speak;
     Random random = new Random();
     int secert = random.nextInt(10)+1;
-
     int num;
+    int counter =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 int secert2 = random.nextInt(10)+1;
                 secert = secert2;
                 Log.d("Mainactive","secret2 :"+secert2);
+                counter=0;
             }
         });
 
@@ -50,10 +51,12 @@ public class MainActivity extends AppCompatActivity {
         public void guess(View view){
         num = Integer.parseInt(number.getText().toString());
             if (num>secert){
-                speak.setText("too big");
+                counter++;
+                speak.setText("too big, already guess "+counter + " times");
             }
             else if (num<secert){
-                speak.setText("too small");
+                counter++;
+                speak.setText("too small, already guess "+counter + " times");
             }
             else {
                 speak.setText("right");
