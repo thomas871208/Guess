@@ -8,12 +8,21 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
+    TextView number;
+    TextView speak;
+    Random random = new Random();
+    int secert = random.nextInt(10)+1;
+    int secert2 = random.nextInt(10)+1;
+    int num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,15 +30,35 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        number = findViewById(R.id.number);
+        speak = findViewById(R.id.speak);
+        Log.d("Mainactive","secret :"+secert);
+        Log.d("Mainactive","secret2 :"+secert2);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                secert = secert2;
             }
         });
+
     }
+        public void guess(View view){
+        num = Integer.parseInt(number.getText().toString());
+            if (num>secert){
+                speak.setText("too big");
+            }
+            else if (num<secert){
+                speak.setText("too small");
+            }
+            else {
+                speak.setText("right");
+
+            }
+
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
