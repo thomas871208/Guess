@@ -1,10 +1,12 @@
 package com.tom.guess;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         number = findViewById(R.id.number);
         speak = findViewById(R.id.speak);
         Log.d("Mainactive","secret :"+secert);
@@ -53,13 +56,37 @@ public class MainActivity extends AppCompatActivity {
             if (num>secert){
                 counter++;
                 speak.setText("too big, already guess "+counter + " times");
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Tip")
+                        .setMessage("too big")
+                        .setPositiveButton("OK",null)
+                        .show();
+
             }
             else if (num<secert){
                 counter++;
                 speak.setText("too small, already guess "+counter + " times");
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Tip")
+                        .setMessage("too small")
+                        .setPositiveButton("OK",null)
+                        .show();
             }
             else {
                 speak.setText("right");
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Tip")
+                        .setMessage("Bingo")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int secert2 = random.nextInt(10)+1;
+                                secert = secert2;
+                                Log.d("Mainactive","secret2 :"+secert2);
+                                counter=0;
+                            }
+                        })
+                        .show();
 
             }
 
